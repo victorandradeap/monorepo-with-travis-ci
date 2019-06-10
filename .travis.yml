@@ -1,0 +1,18 @@
+language: java
+jdk:
+  - openjdk11
+
+sudo: false
+
+matrix:
+  include:
+    - env: PROJECT=sample-project
+    - env: PROJECT=other-sample-project
+
+script: scripts/build-condition.sh
+
+deploy:
+  provider: script
+  script: scripts/deployment-condition.sh
+  on:
+    branch: stable
